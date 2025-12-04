@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS Cost Forecast Dashboard</title>
+  <style>
+    body { font-family: Arial; padding: 40px; background: #f4f4f4; color: #333; }
+    h1 { color: #0073bb; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #fff; }
+    th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+    th { background-color: #0073bb; color: #fff; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+  </style>
+</head>
+<body>
+  <h1>AWS Remaining Month Cost Forecast</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Forecast Amount</th>
+        <th>Unit</th>
+      </tr>
+    </thead>
+    <tbody id="forecastTable">
+      <tr><td colspan="3">Loading...</td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    const forecastTable = document.getElementById('forecastTable');
+    const services = ["ALL", "EC2", "RDS", "VPC", "S3"];
+
+    async function fetchAllForecasts() {
+      forecastTable.innerHTML = '<tr><td colspan="3">Loading...</td></tr>';
+
+      const results = await Promise.all(
+        services.map(async (service) => {
+          try {
+            const response = await fetch(`/forecast?service=${encodeURIComponent(service)}`);
+            const data = await response.json();
+            return data;
+          } catch (err) {
+            return { service, amount: 0, unit: "USD" };
+          }
+        })
+      );
+
+      // Build table rows
+      forecastTable.innerHTML = results.map(r =>
+        `<tr>
+          <td>${r.service}</td>
+          <td>${r.amount}</td>
+          <td>${r.unit}</td>
+        </tr>`
+      ).join('');
+    }
+
+    // Auto-refresh every 60 seconds
+    fetchAllForecasts();
+    setInterval(fetchAllForecasts, 60000);
+  </script>
+</body>
+</html>

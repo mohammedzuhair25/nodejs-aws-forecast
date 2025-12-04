@@ -1,0 +1,23 @@
+{
+  "name": "aws-cost-forecast-server",
+  "version": "1.0.0",
+  "description": "A simple Express server to fetch AWS Cost Explorer forecast",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "aws",
+    "cost-explorer",
+    "forecast",
+    "express"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-cost-explorer": "^3.382.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  }
+}
