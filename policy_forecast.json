@@ -1,4 +1,4 @@
-{
+    {
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -13,23 +13,6 @@
                 "ce:GetSavingsPlansCoverage",
                 "ce:GetUsageForecast",
                 "ce:GetRightsizingRecommendation"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Sid": "BCMRecommendedActions",
-            "Effect": "Allow",
-            "Action": [
-                "bcm-recommended-actions:ListRecommendedActions"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Sid": "BillingConsoleView",
-            "Effect": "Allow",
-            "Action": [
-                "aws-portal:ViewBilling",
-                "aws-portal:ViewUsage"
             ],
             "Resource": "*"
         }
