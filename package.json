@@ -1,23 +1,19 @@
 {
-  "name": "aws-cost-forecast-server",
+  "name": "aws-dashboard",
   "version": "1.0.0",
-  "description": "A simple Express server to fetch AWS Cost Explorer forecast",
-  "main": "server.js",
   "type": "module",
+  "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
-  "keywords": [
-    "aws",
-    "cost-explorer",
-    "forecast",
-    "express"
-  ],
-  "author": "Your Name",
-  "license": "MIT",
   "dependencies": {
-    "@aws-sdk/client-cost-explorer": "^3.382.0",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.19.0",
+    "@aws-sdk/client-cost-explorer": "^3.600.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
   }
 }
